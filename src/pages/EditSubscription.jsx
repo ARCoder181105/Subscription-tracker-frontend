@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, Save, DollarSign, Calendar, Tag, Bell } from 'lucide-react';
-import { useToast } from '../contexts/ToastContext';
-import { useAuth } from '../contexts/AuthContext';
-import Navbar from '../components/Navbar';
-import LoadingSpinner from '../components/LoadingSpinner';
+import { useToast } from '../contexts/ToastContext.jsx';
+import { useAuth } from '../contexts/AuthContext.jsx';
+import Navbar from '../components/Navbar.jsx';
+import LoadingSpinner from '../components/LoadingSpinner.jsx';
 
 const EditSubscription = () => {
   const { id } = useParams();

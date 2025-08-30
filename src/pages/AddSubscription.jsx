@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Save, DollarSign, Calendar, Tag, Bell } from 'lucide-react';
-import { useToast } from '../contexts/ToastContext';
-import { useAuth } from '../contexts/AuthContext';
-import Navbar from '../components/Navbar';
+import { useToast } from '../contexts/ToastContext.jsx';
+import { useAuth } from '../contexts/AuthContext.jsx';
+import Navbar from '../components/Navbar.jsx';
 
 const AddSubscription = () => {
   const [formData, setFormData] = useState({

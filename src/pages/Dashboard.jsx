@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Plus, Edit2, Trash2, Calendar, DollarSign, Bell, Filter } from 'lucide-react';
-import { useToast } from '../contexts/ToastContext';
-import { useAuth } from '../contexts/AuthContext';
-import Navbar from '../components/Navbar';
-import SubscriptionCard from '../components/SubscriptionCard';
-import StatsCards from '../components/StatsCards';
-import LoadingSpinner from '../components/LoadingSpinner';
-import UserProfileCard from '../components/UserProfileCard';
+import { useToast } from '../contexts/ToastContext.jsx';
+import { useAuth } from '../contexts/AuthContext.jsx';
+import Navbar from '../components/Navbar.jsx';
+import SubscriptionCard from '../components/SubscriptionCard.jsx';
+import StatsCards from '../components/StatsCards.jsx';
+import LoadingSpinner from '../components/LoadingSpinner.jsx';
+import UserProfileCard from '../components/userProfileCard.jsx';
 
 const Dashboard = () => {
   const [subscriptions, setSubscriptions] = useState([]);

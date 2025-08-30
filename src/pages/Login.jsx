@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { User, Lock, Eye, EyeOff, ArrowLeft } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
-import { useToast } from '../contexts/ToastContext';
-import Logo from '../components/Logo';
-import OAuthButtons from '../components/OAuthButtons';
+import { useAuth } from '../contexts/AuthContext.jsx';
+import { useToast } from '../contexts/ToastContext.jsx';
+import Logo from '../components/Logo.jsx';
+import OAuthButtons from '../components/OAuthButtons.jsx';
 
 const Login = () => {
   const [formData, setFormData] = useState({ username: '', password: '' });

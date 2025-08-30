@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './contexts/AuthContext';
-import { ToastProvider } from './contexts/ToastContext';
-import ChooseAuth from './pages/ChooseAuth';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Dashboard from './pages/Dashboard';
-import AddSubscription from './pages/AddSubscription';
-import EditSubscription from './pages/EditSubscription';
-import LoadingSpinner from './components/LoadingSpinner';
+import { AuthProvider, useAuth } from './contexts/AuthContext.jsx';
+import { ToastProvider } from './contexts/ToastContext.jsx';
+import ChooseAuth from './pages/ChooseAuth.jsx';
+import Login from './pages/Login.jsx';
+import Register from './pages/Register.jsx';
+import Dashboard from './pages/Dashboard.jsx';
+import AddSubscription from './pages/AddSubscription.jsx';
+import EditSubscription from './pages/EditSubscription.jsx';
+import LoadingSpinner from './components/LoadingSpinner.jsx';
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
