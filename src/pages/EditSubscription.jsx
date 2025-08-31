@@ -76,7 +76,7 @@ const EditSubscription = () => {
     setSaving(true);
 
     try {
-      const response = await authenticatedFetch(`${API_BASE}/api/v1/user/subs/${id}`, {
+      const response = await authenticatedFetch(`/api/v1/user/subs/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'
