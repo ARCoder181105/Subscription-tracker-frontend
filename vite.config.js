@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => {
     server: {
       proxy: {
         '/api': {
-          target: env.VITE_BACKEND_URL, // ✅ loads from .env
+          target: "https://subscription-tracker-backend-wbam.onrender.com", // ✅ loads from .env
           changeOrigin: true,
           secure: false,
         },
