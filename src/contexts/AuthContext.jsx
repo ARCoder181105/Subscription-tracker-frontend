@@ -61,7 +61,7 @@ export const AuthProvider = ({ children }) => {
 
   const refreshToken = async () => {
     try {
-      const response = await fetch('/api/v1/auth/refresh', {
+      const response = await fetch(`${VITE_BACKEND_URL}/api/v1/auth/refresh`, {
         method: 'GET',
         credentials: 'include'
       });
@@ -84,7 +84,7 @@ export const AuthProvider = ({ children }) => {
 
   const checkAuth = async () => {
     try {
-      const response = await fetch('/api/v1/user/home', {
+      const response = await fetch(`${VITE_BACKEND_URL}/api/v1/user/home`, {
         credentials: 'include'
       });
       
@@ -95,7 +95,7 @@ export const AuthProvider = ({ children }) => {
         const refreshSuccess = await refreshToken();
         if (refreshSuccess) {
           // Retry auth check after refresh
-          const retryResponse = await fetch('/api/v1/user/home', {
+          const retryResponse = await fetch(`${VITE_BACKEND_URL}/api/v1/user/home`, {
             credentials: 'include'
           });
           
@@ -117,7 +117,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await fetch('/api/v1/auth/logout', {
+      await fetch(`${VITE_BACKEND_URL}/api/v1/auth/logout`, {
         method: 'GET',
         credentials: 'include'
       });

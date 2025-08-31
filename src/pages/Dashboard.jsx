@@ -23,7 +23,7 @@ const Dashboard = () => {
 
   const fetchSubscriptions = async () => {
     try {
-      const response = await authenticatedFetch('/api/v1/user/home');
+      const response = await authenticatedFetch(`${VITE_BACKEND_URL}/api/v1/user/home`);
 
       if (response.ok) {
         const data = await response.json();
@@ -42,7 +42,7 @@ const Dashboard = () => {
     if (!confirm('Are you sure you want to delete this subscription?')) return;
 
     try {
-      const response = await authenticatedFetch(`/api/v1/user/subs/${id}`, {
+      const response = await authenticatedFetch(`${VITE_BACKEND_URL}/api/v1/user/subs/${id}`, {
         method: 'DELETE'
       });
 
@@ -59,7 +59,7 @@ const Dashboard = () => {
 
   const markAsPaid = async (id, paidDate = null) => {
     try {
-      const response = await authenticatedFetch(`/api/v1/user/subs/${id}/done`, {
+      const response = await authenticatedFetch(`${VITE_BACKEND_URL}/api/v1/user/subs/${id}/done`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ paidDate: paidDate || new Date().toISOString() })

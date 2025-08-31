@@ -40,7 +40,7 @@ const EditSubscription = () => {
 
   const fetchSubscription = async () => {
     try {
-      const response = await authenticatedFetch(`/api/v1/user/subs/${id}`);
+      const response = await authenticatedFetch(`${VITE_BACKEND_URL}/api/v1/user/subs/${id}`);
 
       if (response.ok) {
         const data = await response.json();
@@ -75,7 +75,7 @@ const EditSubscription = () => {
     setSaving(true);
 
     try {
-      const response = await authenticatedFetch(`/api/v1/user/subs/${id}`, {
+      const response = await authenticatedFetch(`${VITE_BACKEND_URL}/api/v1/user/subs/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'

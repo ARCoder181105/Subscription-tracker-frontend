@@ -27,7 +27,7 @@ const AddSubscription = () => {
   const billingCycles = ['Weekly', 'Monthly', 'Quarterly', 'Yearly'];
   const statuses = ['Active', 'Paused', 'Cancelled'];
   const categories = [
-    'Entertainment', 'Productivity', 'Finance', 'Health & Fitness', 
+    'Entertainment', 'Productivity', 'Finance', 'Health & Fitness',
     'Education', 'News', 'Music', 'Cloud Storage', 'Software', 'Other'
   ];
 
@@ -36,7 +36,7 @@ const AddSubscription = () => {
     setLoading(true);
 
     try {
-      const response = await authenticatedFetch('/api/v1/user/subs', {
+      const response = await authenticatedFetch(`${VITE_BACKEND_URL}/api/v1/user/subs`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -85,7 +85,7 @@ const AddSubscription = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      
+
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="flex items-center mb-8">

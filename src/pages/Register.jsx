@@ -34,7 +34,7 @@ const Register = () => {
     }
 
     try {
-      const response = await fetch('/api/v1/auth/register', {
+      const response = await fetch(`${VITE_BACKEND_URL}/api/v1/auth/register`, {
         method: 'POST',
         credentials: 'include',
         body: formDataToSend

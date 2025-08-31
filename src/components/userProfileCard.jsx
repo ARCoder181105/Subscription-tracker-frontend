@@ -19,7 +19,7 @@ const UserProfileCard = () => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const res = await fetch("/api/v1/user/profile", {
+                const res = await fetch(`${VITE_BACKEND_URL}/api/v1/user/profile`, {
                     credentials: "include",
                 });
                 const data = await res.json();
