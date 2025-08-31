@@ -3,7 +3,7 @@ import { Github } from 'lucide-react';
 
 const OAuthButtons = () => {
   const handleOAuthLogin = (provider) => {
-    window.location.href = `https://subscription-tracker-backend-wbam.onrender.com/api/v1/auth/${provider}`;
+    window.location.href = `${import.meta.env.VITE_BACKEND_URL}/api/v1/auth/${provider}`;
   };
 
   // Google Icon SVG Component
