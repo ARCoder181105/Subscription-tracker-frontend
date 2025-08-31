@@ -22,6 +22,7 @@ const AddSubscription = () => {
   const { addToast } = useToast();
   const { authenticatedFetch } = useAuth();
   const navigate = useNavigate();
+  const API_BASE = import.meta.env.VITE_BACKEND_URL;
 
   const currencies = ['INR', 'USD', 'EUR', 'GBP', 'JPY'];
   const billingCycles = ['Weekly', 'Monthly', 'Quarterly', 'Yearly'];
@@ -36,7 +37,7 @@ const AddSubscription = () => {
     setLoading(true);
 
     try {
-      const response = await authenticatedFetch(`${VITE_BACKEND_URL}/api/v1/user/subs`, {
+      const response = await authenticatedFetch(`${API_BASE}/api/v1/user/subs`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

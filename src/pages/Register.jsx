@@ -14,6 +14,7 @@ const Register = () => {
   const { login } = useAuth();
   const { addToast } = useToast();
   const navigate = useNavigate();
+    const API_BASE = import.meta.env.VITE_BACKEND_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,7 +35,7 @@ const Register = () => {
     }
 
     try {
-      const response = await fetch(`${VITE_BACKEND_URL}/api/v1/auth/register`, {
+      const response = await fetch(`${API_BASE}/api/v1/auth/register`, {
         method: 'POST',
         credentials: 'include',
         body: formDataToSend
