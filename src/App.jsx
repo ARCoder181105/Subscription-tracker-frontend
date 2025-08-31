@@ -17,7 +17,7 @@ const ProtectedRoute = ({ children }) => {
     return <LoadingSpinner />;
   }
   
-  return user ? children : <Navigate to="/auth" replace />;
+  return user ? children : <Navigate to="/" replace />;
 };
 
 const PublicRoute = ({ children }) => {
@@ -36,7 +36,7 @@ function AppContent() {
       <div className="App">
         <Routes>
           <Route 
-            path="/auth" 
+            path="/" 
             element={
               <PublicRoute>
                 <ChooseAuth />
@@ -83,7 +83,7 @@ function AppContent() {
               </ProtectedRoute>
             } 
           />
-          <Route path="/" element={<Navigate to="/auth" replace />} />
+          <Route path="/" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
     </Router>
