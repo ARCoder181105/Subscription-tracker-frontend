@@ -37,7 +37,7 @@ const AddSubscription = () => {
     setLoading(true);
 
     try {
-      const response = await authenticatedFetch(`${API_BASE}/api/v1/user/subs`, {
+      const response = await authenticatedFetch(`/api/v1/user/subs`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

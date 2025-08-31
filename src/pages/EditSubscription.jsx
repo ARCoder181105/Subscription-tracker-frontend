@@ -41,7 +41,7 @@ const EditSubscription = () => {
 
   const fetchSubscription = async () => {
     try {
-      const response = await authenticatedFetch(`${API_BASE}/api/v1/user/subs/${id}`);
+      const response = await authenticatedFetch(`/api/v1/user/subs/${id}`);
 
       if (response.ok) {
         const data = await response.json();
