@@ -5,20 +5,19 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  // Set up intervals for periodic auth check and token refresh
+
+  // ✅ Backend API base URL from env
+  const API_BASE = import.meta.env.VITE_BACKEND_URL;
+
   useEffect(() => {
     // Run checkAuth once at the start
     checkAuth();
 
     // Auth check every 2 hours
-    const authCheckInterval = setInterval(() => {
-      checkAuth();  
-    }, 2 * 60 * 60 * 1000); // 2 hours
+    const authCheckInterval = setInterval(checkAuth, 2 * 60 * 60 * 1000);
 
     // Token refresh every 23 hours
-    const tokenRefreshInterval = setInterval(() => {
-      refreshToken();
-    }, 23 * 60 * 60 * 1000); // 23 hours
+    const tokenRefreshInterval = setInterval(refreshToken, 23 * 60 * 60 * 1000);
 
     return () => {
       clearInterval(authCheckInterval);
@@ -26,27 +25,22 @@ export const AuthProvider = ({ children }) => {
     };
   }, []);
 
-
-  // Enhanced fetch function with automatic token refresh
-  const authenticatedFetch = async (url, options = {}) => {
+  // ✅ Unified fetch with API_BASE + retry on 401
+  const authenticatedFetch = async (endpoint, options = {}) => {
     try {
-      let response = await fetch(url, {
+      let response = await fetch(`${API_BASE}${endpoint}`, {
         ...options,
-        credentials: 'include'
+        credentials: 'include',
       });
 
-      // If access token is expired (401), try to refresh
       if (response.status === 401) {
         const refreshSuccess = await refreshToken();
-        
         if (refreshSuccess) {
-          // Retry the original request with new token
-          response = await fetch(url, {
+          response = await fetch(`${API_BASE}${endpoint}`, {
             ...options,
-            credentials: 'include'
+            credentials: 'include',
           });
         } else {
-          // Refresh failed, user needs to login again
           setUser(null);
           throw new Error('Authentication failed, please login again');
         }
@@ -59,15 +53,16 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // ✅ Refresh token
   const refreshToken = async () => {
     try {
-      const response = await fetch(`${VITE_BACKEND_URL}/api/v1/auth/refresh`, {
+      const response = await fetch(`${API_BASE}/api/v1/auth/refresh`, {
         method: 'GET',
-        credentials: 'include'
+        credentials: 'include',
       });
 
       if (response.ok) {
-        const data = await response.json();
+        await response.json();
         console.log('Token refreshed successfully');
         return true;
       } else {
@@ -82,23 +77,21 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // ✅ Check authentication
   const checkAuth = async () => {
     try {
-      const response = await fetch(`${VITE_BACKEND_URL}/api/v1/user/home`, {
-        credentials: 'include'
+      const response = await fetch(`${API_BASE}/api/v1/user/home`, {
+        credentials: 'include',
       });
-      
+
       if (response.ok) {
         setUser({ authenticated: true });
       } else if (response.status === 401) {
-        // Try to refresh token
         const refreshSuccess = await refreshToken();
         if (refreshSuccess) {
-          // Retry auth check after refresh
-          const retryResponse = await fetch(`${VITE_BACKEND_URL}/api/v1/user/home`, {
-            credentials: 'include'
+          const retryResponse = await fetch(`${API_BASE}/api/v1/user/home`, {
+            credentials: 'include',
           });
-          
           if (retryResponse.ok) {
             setUser({ authenticated: true });
           }
@@ -111,15 +104,17 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // ✅ Manual login
   const login = (userData) => {
     setUser(userData);
   };
 
+  // ✅ Logout
   const logout = async () => {
     try {
-      await fetch(`${VITE_BACKEND_URL}/api/v1/auth/logout`, {
+      await fetch(`${API_BASE}/api/v1/auth/logout`, {
         method: 'GET',
-        credentials: 'include'
+        credentials: 'include',
       });
     } catch (error) {
       console.error('Logout error:', error);
@@ -129,14 +124,16 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ 
-      user, 
-      login, 
-      logout, 
-      loading, 
-      authenticatedFetch,
-      refreshToken 
-    }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        login,
+        logout,
+        loading,
+        authenticatedFetch,
+        refreshToken,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
