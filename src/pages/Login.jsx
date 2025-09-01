@@ -48,7 +48,7 @@ const Login = () => {
       {/* Back Button */}
       <div className="absolute top-6 left-6">
         <Link
-          to="/auth"
+          to="/"
           className="flex items-center space-x-2 text-gray-600 hover:text-gray-800 transition duration-200"
         >
           <ArrowLeft className="w-5 h-5" />
